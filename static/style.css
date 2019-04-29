@@ -1,0 +1,11 @@
+.row {
+    background-image: url('1.png');
+    height:300px;
+    width:700px;
+     background-repeat: no-repeat;
+}
+
+#col {
+    width: 300px;
+    height: 190px;
+}
