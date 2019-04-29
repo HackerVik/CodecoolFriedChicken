@@ -6,15 +6,11 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dragula/3.7.2/dragula.min.css"/>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/dragula/3.7.2/dragula.min.js' defer></script>
-    <script> debugger;
-    let containers = document.querySelectorAll('.row');
-    let containersArray = Array.from(htmlCollection);
-    dragula(containersArray);
-    dragula([document.getElementById('upper'), document.getElementById('lower')]);
-    </script>
+    <script src="{{ url_for('static', filename='memory.js') }}" defer></script>
+
 </head>
 <body>
-<div id="upper" class="row">
+<div  id="upper" class="row">
     <div class="col border rounded" id="1">1</div>
     <div class="col border rounded" id="2">2</div>
     <div class="col border rounded" id="3">3</div>

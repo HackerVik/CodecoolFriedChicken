@@ -1,0 +1,1 @@
+dragula([document.getElementById('upper'), document.getElementById('lower')]);
