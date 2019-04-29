@@ -1,4 +1,4 @@
-document.getElementById('btn').addEventListener("click", getImages(5, 5))
+window.onload=function main() {getImages(5,5)};
 
 dragula([document.getElementById("upper"), document.getElementById("lower")])
     .on('drag', function (el) {
