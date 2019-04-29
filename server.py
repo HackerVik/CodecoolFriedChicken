@@ -10,7 +10,7 @@ def index():
 
 @app.route('/memory')
 def memory():
-    pass
+    return render_template("memory.html")
 
 
 @app.route('/widow')
@@ -20,5 +20,7 @@ def widow():
 
 if __name__ == '__main__':
     app.run(
+     host="0.0.0.0",
+        port="5000",
         debug=True,
     )
