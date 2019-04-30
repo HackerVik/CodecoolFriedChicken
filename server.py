@@ -15,7 +15,7 @@ def memory():
 
 @app.route('/widow')
 def widow():
-    pass
+    return render_template('black-widow.html')
 
 
 if __name__ == '__main__':
