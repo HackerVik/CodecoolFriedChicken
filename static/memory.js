@@ -29,7 +29,7 @@ dragula([document.getElementById("memorycontainer")])
 });
 
 function main(){
-
+    document.getElementById("timer").style.display = "none";
     let arr2=shuffle();
     changeImageSource(arr2);
 
@@ -105,17 +105,21 @@ function timer(time) {
 
 }
 
-function difficulty(e) {
 
+function difficulty(e) {
+    document.getElementById("timer").style.display = "block";
     let numnerOfCards=document.getElementById("diff").dataset.diff;
     console.log(numnerOfCards);
     let originalArray=getImages(numnerOfCards, 55)
     changeImageSource(originalArray);
     sessionStorage.setItem("originalArray", JSON.stringify(originalArray));
-    let time = 5;
-   // timer(time);
-    setTimeout(function () {main()},time*1000+1000);
-    document.getElementById("timer").display = "none";
+
+    let time = 4;
+
+
+    setTimeout(function () {main()},time*1000);
+
+
 
 }
 
