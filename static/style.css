@@ -8,11 +8,12 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    text-align: center;
 }
 
 .cfc {
     display: inline;
-    width: 800px;
+    width: 40%;
 }
 
 .memory {

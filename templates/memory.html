@@ -11,13 +11,18 @@
 <body class="memory_game">
 <div class="memorycontainer" id="memorycontainer">
     {% for i in range(5) %}
-    <div class="card" id={{ i+1 }}><img src="/static/images/cardbackground.png"></div>
+        <div class="card" id={{ i+1 }}><img src="/static/images/cardbackground.png"></div>
     {% endfor %}
 </div>
-<button class="diff" data-time="5">Beginner</button>
-<button class="diff" data-time=3>Amateur</button>
-<button class="diff" data-time="1">Expert</button>
-<p id="timer"></p>
-<div id="moves"></div>
+<div class="containercenter">
+    <div>
+        <a href="/"><button><img src="/static/images/home.png"></button></a>
+        <button class="diff" data-time="5"><img src=/static/images/beginner.png></button>
+        <button class="diff" data-time=3><img src=/static/images/amateur.png></button>
+        <button class="diff" data-time="1"><img src=/static/images/expert.png></button>
+    </div>
+    <div id="timer"></div>
+    <div id="moves"></div>
+</div>
 </body>
 </html>

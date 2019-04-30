@@ -113,6 +113,6 @@ function difficulty(e) {
 function moveCounter() {
 
     let moves = parseInt(sessionStorage.getItem("moves")) + 1;
-    document.getElementById("moves").innerHTML = "Moves: " + moves;
+    document.getElementById("moves").innerHTML = "<h1><img src=/static/images/moves.png>" + moves + "</h1>";
     sessionStorage.setItem("moves", moves);
 }
