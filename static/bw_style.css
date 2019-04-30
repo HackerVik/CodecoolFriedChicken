@@ -1,0 +1,53 @@
+#gameBoard {
+    width: 1500px;
+    height: 850px;
+    border: 1px solid black;
+    padding: 20px;
+    position: relative;
+}
+
+body {
+    background-image: url("bw_images/background.jpg");
+    background-size: cover;
+}
+
+.cardPlace {
+    border: 1px solid white;
+    display: inline-block;
+    width: 100px;
+    height: 150px;
+    border-radius: 7px;
+    margin-right: 5px;
+}
+
+img {
+    width: 100px;
+    height: 150px;
+}
+
+
+.card {
+    padding-bottom: 30px;
+}
+
+.front-face, .back-face {
+    position: absolute;
+}
+
+#cardDeck, #completedDeck {
+    border: 1px solid white;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100px;
+    height: 150px;
+    border-radius: 7px;
+    margin: auto 20px 20px auto;
+}
+
+#completedDeck {
+    top: 0;
+    bottom: unset;
+    margin-top: 20px;
+
+}
