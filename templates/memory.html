@@ -3,19 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>CFC | Memory</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dragula/3.7.2/dragula.min.css"/>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/dragula/3.7.2/dragula.min.js' defer></script>
     <script src="{{ url_for('static', filename='memory.js') }}" defer></script>
 </head>
 <body>
-<div id="upper" class="row">
-    <div class="col border rounded" id="1"><img src="/static/images/1.png"></div>
-    <div class="col border rounded" id="2"><img src="/static/images/2.png"></div>
-    <div class="col border rounded" id="3"><img src="/static/images/3.png"></div>
-    <div class="col border rounded" id="4"><img src="/static/images/4.png"></div>
-    <div class="col border rounded" id="5"><img src="/static/images/5.png"></div>
+<div class="memorycontainer">
+    <div class="card" id="1"><img src="/static/images/1.png"></div>
+    <div class="card" id="2"><img src="/static/images/2.png"></div>
+    <div class="card" id="3"><img src="/static/images/3.png"></div>
+    <div class="card" id="4"><img src="/static/images/4.png"></div>
+    <div class="card" id="5"><img src="/static/images/5.png"></div>
 </div>
 </body>
 </html>

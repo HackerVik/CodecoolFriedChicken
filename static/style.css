@@ -1,0 +1,36 @@
+.index {
+    background-image: url("/static/images/background.png");
+    background-repeat: repeat;
+}
+
+.containercenter {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.cfc {
+    display: inline;
+    position: center;
+    width: 400px;
+}
+
+.memory {
+    display:inline;
+}
+
+.blackwidow {
+    display:inline;
+}
+
+.memorycontainer {
+    position:fixed;
+    top: 20%;
+    left: 20%;
+    transform: translate(-20%, -20%);
+}
+
+.card {
+    display:inline;
+}
