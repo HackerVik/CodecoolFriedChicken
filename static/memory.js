@@ -26,8 +26,6 @@ dragula([document.getElementById("memorycontainer")])
 
 function main(){
     let arr2=shuffle();
-    console.log(arr2+"after shuffle");
-
     changeImageSource(arr2);
 
 }
@@ -105,9 +103,6 @@ function timer(time) {
 function difficulty(e) {
     let originalArray=getImages(5, 5)
     changeImageSource(originalArray);
-    console.log(originalArray+"original");
-  //  originalArray = getActualArray();
-
     sessionStorage.setItem("originalArray", JSON.stringify(originalArray));
     let time = this.dataset.time;
     timer(time);
