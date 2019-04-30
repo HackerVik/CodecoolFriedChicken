@@ -1,26 +1,19 @@
+
 buttons = document.querySelectorAll(".diff");
 for (let i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener("click", difficulty);
 }
 
-window.onload = function main() {
-    getImages(5, 5)
-
-    let originalArray = getActualArray();
-    sessionStorage.setItem("originalArray", JSON.stringify(originalArray));
-    console.log(originalArray);
-
-};
 
 dragula([document.getElementById("memorycontainer")])
     .on('drag', function (el) {
-
     }).on('drop', function (el) {
     let arr = getActualArray();
     let arrSolution = JSON.parse(sessionStorage.getItem("originalArray"));
     console.log(arrSolution);
     moveCounter();
     if (checkArray(arr, arrSolution)) {
+
         let moves = sessionStorage.getItem("moves");
         setTimeout(function () {alert("You won! Your moves: " + moves)});
     }
@@ -31,6 +24,12 @@ dragula([document.getElementById("memorycontainer")])
 
 });
 
+function main(){
+    let arr2=shuffle();
+    changeImageSource(arr2);
+
+}
+
 function getImages(numberOfCards, numberOfImages) {
     let arr = new Array();
     do {
@@ -39,7 +38,7 @@ function getImages(numberOfCards, numberOfImages) {
             arr.push(numberOfGenerated);
         }
     } while (arr.length < numberOfCards);
-    changeImageSource(arr);
+    return arr;
 }
 
 function changeImageSource(arr) {
@@ -81,33 +80,38 @@ function shuffle() {
         array[currentIndex] = array[randomIndex];
         array[randomIndex] = temporaryValue;
 
-        changeImageSource(array);
 
-        return array;
     }
+            return array;
 }
 
 function timer(time) {
     sessionStorage.setItem("moves", 0);
-    var timeleft = time;
-    var downloadTimer = setInterval(function () {
+    let timeleft = time;
+    let downloadTimer = setInterval(function () {
         document.getElementById("timer").innerHTML = timeleft + " seconds remaining";
         timeleft -= 1;
-        if (timeleft <= 0) {
+        if (timeleft < 0) {
             clearInterval(downloadTimer);
             document.getElementById("timer").innerHTML = ""
-            shuffle();
+
         }
     }, 1000);
+
 }
 
 function difficulty(e) {
+    let originalArray=getImages(5, 5)
+    changeImageSource(originalArray);
+    sessionStorage.setItem("originalArray", JSON.stringify(originalArray));
+    let time = this.dataset.time;
+    timer(time);
+    setTimeout(function () {main()},time*1000+1000);
 
-
-    timer(this.dataset.time);
 }
 
 function moveCounter() {
+
     let moves = parseInt(sessionStorage.getItem("moves")) + 1;
     document.getElementById("moves").innerHTML = "Moves: " + moves;
     sessionStorage.setItem("moves", moves);
