@@ -10,7 +10,7 @@ def index():
 
 @app.route('/memory')
 def memory():
-    return render_template("memory.html")
+    return render_template("memory.html" , image_num=5)
 
 
 @app.route('/widow')
