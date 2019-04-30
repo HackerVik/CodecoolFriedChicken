@@ -25,6 +25,7 @@ dragula([document.getElementById("memorycontainer")])
 });
 
 function main(){
+
     let arr2=shuffle();
     changeImageSource(arr2);
 
@@ -101,7 +102,7 @@ function timer(time) {
 }
 
 function difficulty(e) {
-    let originalArray=getImages(5, 5)
+    let originalArray=getImages(5, 9)
     changeImageSource(originalArray);
     sessionStorage.setItem("originalArray", JSON.stringify(originalArray));
     let time = this.dataset.time;
@@ -116,3 +117,4 @@ function moveCounter() {
     document.getElementById("moves").innerHTML = "<h1><img src=/static/images/moves.png>" + moves + "</h1>";
     sessionStorage.setItem("moves", moves);
 }
+
