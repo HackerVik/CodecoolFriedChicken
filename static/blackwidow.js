@@ -31,9 +31,11 @@ function shuffle(array) {
 function putCardsIntoDeck() {
     let cardDeck = document.querySelector('#cardDeck');
     let shuffledCards = shuffle(getDeck(8));
+    let i = 0;
     for (let card of shuffledCards) {
         const cardDiv = document.createElement('div');
-        cardDiv.classList.add('card');
+        cardDiv.setAttribute("id", i++);
+        cardDiv.classList.add('card-in-deck');
         cardDiv.setAttribute("data-value", card);
         cardDeck.appendChild(cardDiv);
 
@@ -47,7 +49,28 @@ function putCardsIntoDeck() {
         cardFront.setAttribute("src", `/static/bw_images/${card}H.png`);
         cardDiv.appendChild(cardFront);
     }
+    console.log(cardDeck)
 }
 
+function displayCards() {
+    let cardPlaces = document.querySelectorAll(".cardPlace");
+    let cardDeck = document.querySelector('#cardDeck').children;
+    let index = 0;
+    let cardDeck2 = Array.from(cardDeck);
+
+    for (let card of cardDeck2) {
+        card.className = 'card';
+        cardPlaces[index].appendChild(card);
+
+        if (index === 9) {
+            index = 0;
+        } else {
+            index++;
+        }
+    }
+}
 
 putCardsIntoDeck();
+
+
+displayCards();
