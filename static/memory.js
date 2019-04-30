@@ -22,7 +22,7 @@ dragula([document.getElementById("upper"), document.getElementById("lower")])
     console.log(arrSolution);
     moveCounter();
     if (checkArray(arr, arrSolution)) {
-        moves = sessionStorage.getItem("moves");
+        let moves = sessionStorage.getItem("moves");
         setTimeout(function () {alert("You won! Your moves: " + moves)});
     }
 
@@ -46,6 +46,7 @@ function getImages(numberOfCards, numberOfImages) {
 function changeImageSource(arr) {
     let images = document.querySelectorAll(".col");
     for (let i = 0; i < arr.length; i++) {
+
         images[i].innerHTML = '<div class="images" data-image="' + arr[i] + '"><img src="/static/images/' + arr[i] + '.png"></div>';
     }
 }

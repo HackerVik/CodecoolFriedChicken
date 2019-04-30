@@ -11,11 +11,9 @@
 </head>
 <body>
 <div id="upper" class="row">
-    <div class="col border rounded" id="1"><img src="/static/images/1.png"></div>
-    <div class="col border rounded" id="2"><img src="/static/images/2.png"></div>
-    <div class="col border rounded" id="3"><img src="/static/images/3.png"></div>
-    <div class="col border rounded" id="4"><img src="/static/images/4.png"></div>
-    <div class="col border rounded" id="5"><img src="/static/images/5.png"></div>
+    {% for i in range(image_num) %}
+    <div class="col border rounded" id="{{(i+1)}}"><img src="/static/images/{{i}}.png"></div>
+    {%  endfor %}
 </div>
 <button id="shuffle">Shuffle</button>
 <button class="diff" data-time="3">3</button>
