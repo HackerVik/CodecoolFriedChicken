@@ -1,5 +1,5 @@
 .index {
-    background-image: url("/static/images/index_background.png");
+    background-image: url("/static/images/index_background.gif");
     background-repeat: repeat;
 }
 
@@ -34,17 +34,11 @@
 
 .card {
     display:inline;
-    border: 2px solid white;
     margin:5px;
-    border-radius: 25px;
 }
 
 .memory_game {
-    background-image: url("/static/images/memory_background.png");
+    background-image: url("/static/images/memory_background.gif");
     background-repeat: no-repeat;
 
-}
-
-img {
-    border-radius: 25px;
 }
