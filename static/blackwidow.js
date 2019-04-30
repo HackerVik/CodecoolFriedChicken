@@ -49,15 +49,16 @@ function putCardsIntoDeck() {
         cardFront.setAttribute("src", `/static/bw_images/${card}H.png`);
         cardDiv.appendChild(cardFront);
     }
+    console.log(cardDeck)
 }
 
 function displayCards() {
     let cardPlaces = document.querySelectorAll(".cardPlace");
     let cardDeck = document.querySelector('#cardDeck').children;
-    console.log(cardDeck)
     let index = 0;
-    for (let card of cardDeck) {
-        console.log(card);
+    let cardDeck2 = Array.from(cardDeck);
+
+    for (let card of cardDeck2) {
         card.className = 'card';
         cardPlaces[index].appendChild(card);
 
