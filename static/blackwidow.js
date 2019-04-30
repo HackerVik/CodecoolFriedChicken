@@ -1,5 +1,3 @@
-
-
 //for difficulty setting later
 function getDeck(num) {
     let deck = [];
@@ -12,23 +10,44 @@ function getDeck(num) {
 }
 
 function shuffle(array) {
-  let currentIndex = array.length, temporaryValue, randomIndex;
+    let currentIndex = array.length, temporaryValue, randomIndex;
 
-  // While there remain elements to shuffle...
-  while (0 !== currentIndex) {
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
 
-    // Pick a remaining element...
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex -= 1;
+        // Pick a remaining element...
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
 
-    // And swap it with the current element.
-    temporaryValue = array[currentIndex];
-    array[currentIndex] = array[randomIndex];
-    array[randomIndex] = temporaryValue;
-  }
+        // And swap it with the current element.
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+    }
 
-  return array;
+    return array;
+}
+
+function putCardsIntoDeck() {
+    let cardDeck = document.querySelector('#cardDeck');
+    let shuffledCards = shuffle(getDeck(8));
+    for (let card of shuffledCards) {
+        const cardDiv = document.createElement('div');
+        cardDiv.classList.add('card');
+        cardDiv.setAttribute("data-value", card);
+        cardDeck.appendChild(cardDiv);
+
+        const cardBack = document.createElement('img');
+        cardBack.setAttribute("src", "/static/bw_images/gray_back.png");
+        cardBack.classList.add('back-face');
+        cardDiv.appendChild(cardBack);
+
+        const cardFront = document.createElement('img');
+        cardFront.classList.add('front-face');
+        cardFront.setAttribute("src", `/static/bw_images/${card}H.png`);
+        cardDiv.appendChild(cardFront);
+    }
 }
 
 
-shuffle(getDeck(8));
+putCardsIntoDeck();
