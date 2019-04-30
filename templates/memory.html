@@ -8,7 +8,7 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/dragula/3.7.2/dragula.min.js' defer></script>
     <script src="{{ url_for('static', filename='memory.js') }}" defer></script>
 </head>
-<body>
+<body class="memory_game">
 <div class="memorycontainer" id="memorycontainer">
     {% for i in range(5) %}
     <div class="card" id={{ i+1 }}><img src="/static/images/cardbackground.png"></div>
