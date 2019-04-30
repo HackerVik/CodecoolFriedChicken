@@ -1,4 +1,3 @@
-document.getElementById("shuffle").addEventListener("click", shuffle);
 buttons = document.querySelectorAll(".diff");
 for (let i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener("click", difficulty);
