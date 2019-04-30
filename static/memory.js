@@ -1,11 +1,9 @@
-
 buttons = document.querySelectorAll(".diff");
 for (let i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener("click", difficulty);
 }
 
-window.onload = function ()
-{
+window.onload = function () {
     difficulty();
 }
 
@@ -19,8 +17,11 @@ dragula([document.getElementById("memorycontainer")])
     if (checkArray(arr, arrSolution)) {
 
         let moves = sessionStorage.getItem("moves");
-        setTimeout(function () {alert("You won! Your moves: " + moves)});
-                cardToBack();
+        setTimeout(function () {
+            alert("You won! Your moves: " + moves)
+        });
+        sessionStorage.setItem("moves", 0);
+        cardToBack();
 
     }
 
@@ -30,16 +31,16 @@ dragula([document.getElementById("memorycontainer")])
 
 });
 
-function cardToBack(){
+function cardToBack() {
     let cards = document.querySelectorAll(".card");
-    for (let i=0; i<cards.length; i++){
-        cards[i].innerHTML='<div class="card" id='+ i +'><img src="/static/images/cardbackground.png"></div>';
+    for (let i = 0; i < cards.length; i++) {
+        cards[i].innerHTML = '<div class="card" id=' + i + '><img src="/static/images/cardbackground.png"></div>';
     }
 }
 
-function main(){
+function main() {
     document.getElementById("timer").style.display = "none";
-    let arr2=shuffle();
+    let arr2 = shuffle();
     changeImageSource(arr2);
 
 }
@@ -96,8 +97,9 @@ function shuffle() {
 
 
     }
-            return array;
+    return array;
 }
+
 /*
 function timer(time) {
     sessionStorage.setItem("moves", 0);
@@ -117,17 +119,18 @@ function timer(time) {
 
 function difficulty(e) {
     document.getElementById("timer").style.display = "block";
-    let numnerOfCards=document.getElementById("diff").dataset.diff;
+    let numnerOfCards = document.getElementById("diff").dataset.diff;
     console.log(numnerOfCards);
-    let originalArray=getImages(numnerOfCards, 55)
+    let originalArray = getImages(numnerOfCards, 55)
     changeImageSource(originalArray);
     sessionStorage.setItem("originalArray", JSON.stringify(originalArray));
 
     let time = 4.5;
 
 
-    setTimeout(function () {main()},time*1000);
-
+    setTimeout(function () {
+        main()
+    }, time * 1000);
 
 
 }
