@@ -4,6 +4,10 @@ for (let i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener("click", difficulty);
 }
 
+window.onload = function ()
+{
+    difficulty();
+}
 
 dragula([document.getElementById("memorycontainer")])
     .on('drag', function (el) {
@@ -102,12 +106,16 @@ function timer(time) {
 }
 
 function difficulty(e) {
-    let originalArray=getImages(5, 9)
+
+    let numnerOfCards=document.getElementById("diff").dataset.diff;
+    console.log(numnerOfCards);
+    let originalArray=getImages(numnerOfCards, 55)
     changeImageSource(originalArray);
     sessionStorage.setItem("originalArray", JSON.stringify(originalArray));
-    let time = this.dataset.time;
-    timer(time);
+    let time = 5;
+   // timer(time);
     setTimeout(function () {main()},time*1000+1000);
+    document.getElementById("timer").display = "none";
 
 }
 

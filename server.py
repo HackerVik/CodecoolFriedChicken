@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
@@ -10,7 +10,12 @@ def index():
 
 @app.route('/memory')
 def memory():
-    return render_template("memory.html" , image_num=5)
+    try:
+        diff = int(request.args.get("diff", -1))
+    except ValueError:
+        diff = None
+    image_num = request.args.get("diff", 5)
+    return render_template("memory.html" , diff=diff, image_num=image_num)
 
 
 @app.route('/widow')
