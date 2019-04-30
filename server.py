@@ -11,7 +11,7 @@ def index():
 @app.route('/memory')
 def memory():
     try:
-        diff = int(request.args.get("diff", -1))
+        diff = int(request.args.get("diff", 4))
     except ValueError:
         diff = None
     image_num = request.args.get("diff", 5)

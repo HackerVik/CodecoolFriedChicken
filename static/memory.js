@@ -89,7 +89,7 @@ function shuffle() {
     }
             return array;
 }
-
+/*
 function timer(time) {
     sessionStorage.setItem("moves", 0);
     let timeleft = time;
@@ -104,7 +104,7 @@ function timer(time) {
     }, 1000);
 
 }
-
+*/
 
 function difficulty(e) {
     document.getElementById("timer").style.display = "block";
@@ -114,7 +114,7 @@ function difficulty(e) {
     changeImageSource(originalArray);
     sessionStorage.setItem("originalArray", JSON.stringify(originalArray));
 
-    let time = 4;
+    let time = 4.5;
 
 
     setTimeout(function () {main()},time*1000);

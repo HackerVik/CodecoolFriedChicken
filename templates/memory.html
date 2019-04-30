@@ -9,7 +9,7 @@
     <script src="{{ url_for('static', filename='memory.js') }}" defer></script>
 </head>
 <body class="memory_game">
-{%  if diff!=-1 %}
+
 <div class="memorycontainer" id="memorycontainer">
     {% for i in range(diff) %}
         <div class="card" id={{ i+1 }}><img src="/static/images/cardbackground.png"></div>
@@ -51,20 +51,20 @@
 
 </div>
 
-{% else %}
+
 
 
     <div class="containercenter">
     <div>
 
-        <a href="/memory?diff=3"><button class="diff" data-time="5"><img src=/static/images/beginner.png></button></a>
-        <a href="/memory?diff=5"><button class="diff" data-time=3><img src=/static/images/amateur.png></button></a>
-        <a href="/memory?diff=7"><button class="diff" data-time="1"><img src=/static/images/expert.png></button></a>
+        <a href="/memory?diff=4"><button class="diff"><img src=/static/images/beginner.png></button></a>
+        <a href="/memory?diff=6"><button class="diff"><img src=/static/images/amateur.png></button></a>
+        <a href="/memory?diff=8"><button class="diff"><img src=/static/images/expert.png></button></a>
     </div>
 
 
 
-{% endif %}
+
 
 
 </div>
