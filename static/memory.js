@@ -13,7 +13,7 @@ window.onload = function main() {
 
 };
 
-dragula([document.getElementById("upper"), document.getElementById("lower")])
+dragula([document.getElementById("memorycontainer")])
     .on('drag', function (el) {
 
     }).on('drop', function (el) {
@@ -44,7 +44,7 @@ function getImages(numberOfCards, numberOfImages) {
 }
 
 function changeImageSource(arr) {
-    let images = document.querySelectorAll(".col");
+    let images = document.querySelectorAll(".card");
     for (let i = 0; i < arr.length; i++) {
 
         images[i].innerHTML = '<div class="images" data-image="' + arr[i] + '"><img src="/static/images/' + arr[i] + '.png"></div>';
