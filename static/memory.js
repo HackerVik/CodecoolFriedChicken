@@ -14,12 +14,14 @@ dragula([document.getElementById("memorycontainer")])
     }).on('drop', function (el) {
     let arr = getActualArray();
     let arrSolution = JSON.parse(sessionStorage.getItem("originalArray"));
-    console.log(arrSolution);
+
     moveCounter();
     if (checkArray(arr, arrSolution)) {
 
         let moves = sessionStorage.getItem("moves");
         setTimeout(function () {alert("You won! Your moves: " + moves)});
+                cardToBack();
+
     }
 
 
@@ -27,6 +29,13 @@ dragula([document.getElementById("memorycontainer")])
 
 
 });
+
+function cardToBack(){
+    let cards = document.querySelectorAll(".card");
+    for (let i=0; i<cards.length; i++){
+        cards[i].innerHTML='<div class="card" id='+ i +'><img src="/static/images/cardbackground.png"></div>';
+    }
+}
 
 function main(){
     document.getElementById("timer").style.display = "none";
