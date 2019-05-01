@@ -63,13 +63,15 @@ async function displayCards() {
     while (i < 54) {
         await timer(50);
         let card = cardDeck[i];
+        if (i >= 44){
+            card = setBackCardHidden(card)
+        }
         card.className = 'card';
         cardPlaces[index].appendChild(card);
         index = index === 9 ? 0 : index + 1;
         i++;
     }
 }
-
 
 
 async function addNextHand(event) {
@@ -86,7 +88,6 @@ async function addNextHand(event) {
         index++
     }
 }
-
 
 function setBackCardHidden(card) {
     let back = card.querySelector('.back-face');
