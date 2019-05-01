@@ -1,6 +1,6 @@
 .index {
     background-image: url("/static/images/index_background.png");
-    background-repeat: repeat;
+    background-size: cover;
 }
 
 .containercenter {
@@ -55,7 +55,7 @@
 
 .memory_game {
     background-image: url("/static/images/memory_background.png");
-    background-repeat: no-repeat;
+    background-size: cover;
 
 }
 
