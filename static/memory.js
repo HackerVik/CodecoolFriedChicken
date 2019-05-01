@@ -1,4 +1,5 @@
 buttons = document.querySelectorAll(".diff");
+document.getElementById("manual").addEventListener("click", manual)
 for (let i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener("click", difficulty);
 }
@@ -111,7 +112,6 @@ function difficulty(e) {
     sessionStorage.setItem("game_run", "false");
     document.getElementById("timer").style.display = "block";
     let numnerOfCards = document.getElementById("diff").dataset.diff;
-    console.log(numnerOfCards);
     let originalArray = getImages(numnerOfCards, 55)
     changeImageSource(originalArray);
     sessionStorage.setItem("originalArray", JSON.stringify(originalArray));
@@ -131,12 +131,14 @@ function difficulty(e) {
 function moveCounter(reset = false) {
     let moves = 0
 
-    if (reset === false){
+    if (reset === false) {
 
         moves = parseInt(sessionStorage.getItem("moves")) + 1;
-        console.log(moves);
         sessionStorage.setItem("moves", moves);
     }
     document.getElementById("moves").innerHTML = "<img src=/static/images/moves.png>" + moves;
 }
 
+function manual() {
+    alert("Memory Game (sometimes referred to as Joe Garagiola's Memory Game) was an American television game show that aired on NBC. The series – hosted by former baseball star and then-current Today personality Joe Garagiola – ran from February 15 to July 30, 1971. The show's creator and packager was Merv Griffin, and its announcer was Johnny Olson (his only announcing job for Merv Griffin Productions).");
+}
