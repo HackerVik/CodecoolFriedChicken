@@ -27,8 +27,8 @@
 .memorycontainer {
     position: fixed;
     top: 25%;
-    left: 40%;
-    transform: translate(-25%, -40%);
+    left: 52.5%;
+    transform: translate(-50%, -50%);
     width: 1600px;
     height: 450px;
     display: flex;
@@ -39,7 +39,7 @@
 .button_container {
     position: fixed;
     top: 50%;
-    left: 50%;
+    left: 10%;
     transform: translate(-50%, -50%);
 }
 
