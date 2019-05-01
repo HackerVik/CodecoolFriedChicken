@@ -107,7 +107,7 @@ function shuffle() {
 
 
 function difficulty(e) {
-
+    sessionStorage.setItem("moves", 0);
     sessionStorage.setItem("game_run", "false");
     document.getElementById("timer").style.display = "block";
     let numnerOfCards = document.getElementById("diff").dataset.diff;
@@ -129,13 +129,14 @@ function difficulty(e) {
 }
 
 function moveCounter(reset = false) {
+    let moves = 0
 
-    if (reset){
-        document.getElementById("moves").innerHTML = "<h1><img src=/static/images/moves.png>" + moves + "</h1>";
-    } else {
-        let moves = parseInt(sessionStorage.getItem("moves")) + 1;
+    if (reset === false){
+
+        moves = parseInt(sessionStorage.getItem("moves")) + 1;
+        console.log(moves);
         sessionStorage.setItem("moves", moves);
     }
-    document.getElementById("moves").innerHTML = "<h1><img src=/static/images/moves.png>" + moves + "</h1>";
+    document.getElementById("moves").innerHTML = "<img src=/static/images/moves.png>" + moves;
 }
 
