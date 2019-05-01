@@ -12,7 +12,7 @@
 
 <div class="memorycontainer" id="memorycontainer">
     {% for i in range(diff) %}
-        <div class="card" id={{ i+1 }}><img src="/static/images/cardbackground.png"></div>
+        <div class="card" id={{ i+1 }}><img class="card_image "src="/static/images/cardbackground.png"></div>
     {% endfor %}
     <input type="hidden" id="diff" data-diff="{{ diff }}">
 </div>
@@ -45,12 +45,9 @@
             </svg>
         </div>
     </div>
-
-
-    <div id="moves"></div>
-
 </div>
 <div class="button_container">
+    <div class="button" id="moves"></div>
     <div class="button"><a href="/">
         <button><img src="/static/images/home.png"></button>
     </a></div>
