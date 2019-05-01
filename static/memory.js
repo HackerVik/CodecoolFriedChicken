@@ -5,27 +5,32 @@ for (let i = 0; i < buttons.length; i++) {
 
 window.onload = function () {
     difficulty();
-}
+};
 
 dragula([document.getElementById("memorycontainer")])
     .on('drag', function (el) {
     }).on('drop', function (el) {
-    let arr = getActualArray();
-    let arrSolution = JSON.parse(sessionStorage.getItem("originalArray"));
 
-    moveCounter();
-    if (checkArray(arr, arrSolution)) {
+    let game_run = sessionStorage.getItem("game_run");
+    if (game_run === "true") {
+        let arr = getActualArray();
+        let arrSolution = JSON.parse(sessionStorage.getItem("originalArray"));
 
-        let moves = sessionStorage.getItem("moves");
-        setTimeout(function () {
-            alert("You won! Your moves: " + moves)
-        });
-        sessionStorage.setItem("moves", 0);
-        cardToBack();
+        moveCounter();
+        if (checkArray(arr, arrSolution)) {
+
+            let moves = sessionStorage.getItem("moves");
+            setTimeout(function () {
+                alert("You won! Your moves: " + moves)
+            });
+            sessionStorage.setItem("moves", 0);
+            cardToBack();
+            sessionStorage.setItem("game_run", "false");
+            moveCounter(true);
+
+        }
 
     }
-
-
     // Used like so
 
 
@@ -100,24 +105,10 @@ function shuffle() {
     return array;
 }
 
-/*
-function timer(time) {
-    sessionStorage.setItem("moves", 0);
-    let timeleft = time;
-    let downloadTimer = setInterval(function () {
-        document.getElementById("timer").innerHTML = timeleft + " seconds remaining";
-        timeleft -= 1;
-        if (timeleft < 0) {
-            clearInterval(downloadTimer);
-            document.getElementById("timer").innerHTML = ""
-
-        }
-    }, 1000);
-
-}
-*/
 
 function difficulty(e) {
+
+    sessionStorage.setItem("game_run", "false");
     document.getElementById("timer").style.display = "block";
     let numnerOfCards = document.getElementById("diff").dataset.diff;
     console.log(numnerOfCards);
@@ -129,16 +120,22 @@ function difficulty(e) {
 
 
     setTimeout(function () {
+        sessionStorage.setItem("game_run", "true");
+
         main()
     }, time * 1000);
 
 
 }
 
-function moveCounter() {
+function moveCounter(reset = false) {
 
-    let moves = parseInt(sessionStorage.getItem("moves")) + 1;
+    if (reset){
+        document.getElementById("moves").innerHTML = "<h1><img src=/static/images/moves.png>" + moves + "</h1>";
+    } else {
+        let moves = parseInt(sessionStorage.getItem("moves")) + 1;
+        sessionStorage.setItem("moves", moves);
+    }
     document.getElementById("moves").innerHTML = "<h1><img src=/static/images/moves.png>" + moves + "</h1>";
-    sessionStorage.setItem("moves", moves);
 }
 
