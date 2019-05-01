@@ -45,7 +45,7 @@ function putCardsIntoDeck() {
         cardDiv.appendChild(cardFront);
 
         const cardBack = document.createElement('img');
-        cardBack.setAttribute("src", "/static/bw_images/gray_back.png");
+        cardBack.setAttribute("src", "/static/bw_images/card_back.png");
         cardBack.classList.add('back-face');
         cardDiv.appendChild(cardBack);
     }
@@ -54,14 +54,15 @@ function putCardsIntoDeck() {
 function timer(ms) {
     return new Promise(res => setTimeout(res, ms));
 }
-    
+
 async function displayCards() {
     const cardPlaces = document.querySelectorAll(".cardPlace");
     const cardDeck = Array.from(document.querySelector('#cardDeck').children);
-    let index = 0, i = 0;
+    let index = 0, i = 0, row = 0;
 
     while (i < 54) {
-        await timer(50);
+        slideCard(index, row, i);
+        await timer(100);
         let card = cardDeck[i];
         if (i >= 44){
             card = setBackCardHidden(card)
@@ -69,6 +70,7 @@ async function displayCards() {
         card.className = 'card';
         cardPlaces[index].appendChild(card);
         index = index === 9 ? 0 : index + 1;
+        row = index === 9 ? row + 1 : row;
         i++;
     }
 }
@@ -105,10 +107,27 @@ function overturn(){
 }
 
 
+function slideCard(col, row, _id) {
+  let elem = document.getElementById(`${_id}`);
+  let bottom = 0, right = 0;
+  let id = setInterval(frame, 1);
+  function frame() {
+    if (bottom === 700 || right === 1300) {
+      clearInterval(id);
+    } else {
+      bottom = bottom + 24 - 2 * row;
+      right = right + 48 - 3.84 * col;
+      elem.style.bottom = bottom + "px";
+      elem.style.right =  right + "px";
+    }
+  }
+}
+
+
+
+
 let cardDeck = document.querySelector('#cardDeck');
 cardDeck.addEventListener('click', addNextHand);
 window.addEventListener('load', displayCards);
 
 putCardsIntoDeck();
-
-
