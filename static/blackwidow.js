@@ -95,9 +95,19 @@ function setBackCardHidden(card) {
 }
 
 
+function overturn(){
+    let cardPlaces = document.querySelectorAll('.cardPlace');
+    for (let place of cardPlaces) {
+        let lastCard = place.lastChild;
+        setBackCardHidden(lastCard);
+    }
+}
+
+
 let cardDeck = document.querySelector('#cardDeck');
 cardDeck.addEventListener('click', addNextHand);
 window.addEventListener('load', displayCards);
 
 putCardsIntoDeck();
+
 
