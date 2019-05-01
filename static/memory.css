@@ -46,6 +46,11 @@
 .button {
   display:block;
   margin: 5px;
+  align-content: center;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  font-size: 40px;
 }
 
 .card {
