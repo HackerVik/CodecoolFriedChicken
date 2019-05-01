@@ -39,24 +39,29 @@ function putCardsIntoDeck() {
         cardDiv.setAttribute("data-value", card);
         cardDeck.appendChild(cardDiv);
 
-        const cardBack = document.createElement('img');
-        cardBack.setAttribute("src", "/static/bw_images/gray_back.png");
-        cardBack.classList.add('back-face');
-        cardDiv.appendChild(cardBack);
-
         const cardFront = document.createElement('img');
         cardFront.classList.add('front-face');
         cardFront.setAttribute("src", `/static/bw_images/${card}H.png`);
         cardDiv.appendChild(cardFront);
+
+        const cardBack = document.createElement('img');
+        cardBack.setAttribute("src", "/static/bw_images/gray_back.png");
+        cardBack.classList.add('back-face');
+        cardDiv.appendChild(cardBack);
     }
 }
 
-function displayCards() {
+function timer(ms) {
+    return new Promise(res => setTimeout(res, ms));
+}
+    
+async function displayCards() {
     const cardPlaces = document.querySelectorAll(".cardPlace");
     const cardDeck = Array.from(document.querySelector('#cardDeck').children);
     let index = 0, i = 0;
 
     while (i < 54) {
+        await timer(50);
         let card = cardDeck[i];
         card.className = 'card';
         cardPlaces[index].appendChild(card);
@@ -65,7 +70,34 @@ function displayCards() {
     }
 }
 
+
+
+async function addNextHand(event) {
+    let cardPlaces = document.querySelectorAll(".cardPlace");
+    let cardDeck = Array.from(event.currentTarget.children);
+    let index = 0;
+
+    while (index < 10) {
+
+        await timer(50);
+        let card = setBackCardHidden(cardDeck[index]);
+        card.className = 'card';
+        cardPlaces[index].appendChild(card);
+        index++
+    }
+}
+
+
+function setBackCardHidden(card) {
+    let back = card.querySelector('.back-face');
+    back.className = 'back-face-hidden';
+    return card;
+}
+
+
+let cardDeck = document.querySelector('#cardDeck');
+cardDeck.addEventListener('click', addNextHand);
+window.addEventListener('load', displayCards);
+
 putCardsIntoDeck();
 
-
-displayCards();
