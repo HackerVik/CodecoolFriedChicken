@@ -54,24 +54,19 @@ function putCardsIntoDeck() {
 function timer(ms) {
     return new Promise(res => setTimeout(res, ms));
 }
-
+    
 async function displayCards() {
-    let cardPlaces = document.querySelectorAll(".cardPlace");
-    let cardDeck = Array.from(document.querySelector('#cardDeck').children);
-    let index = 0, count = 0;
+    const cardPlaces = document.querySelectorAll(".cardPlace");
+    const cardDeck = Array.from(document.querySelector('#cardDeck').children);
+    let index = 0, i = 0;
 
-    for (let card of cardDeck) {
+    while (i < 54) {
         await timer(50);
-        
-        console.log(count);
+        let card = cardDeck[i];
         card.className = 'card';
         cardPlaces[index].appendChild(card);
-
-        if (index === 9) {
-            index = 0;
-        } else {
-            index++;
-        }
+        index = index === 9 ? 0 : index + 1;
+        i++;
     }
 }
 
