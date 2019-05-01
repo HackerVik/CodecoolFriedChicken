@@ -39,26 +39,31 @@ function putCardsIntoDeck() {
         cardDiv.setAttribute("data-value", card);
         cardDeck.appendChild(cardDiv);
 
-        const cardBack = document.createElement('img');
-        cardBack.setAttribute("src", "/static/bw_images/gray_back.png");
-        cardBack.classList.add('back-face');
-        cardDiv.appendChild(cardBack);
-
         const cardFront = document.createElement('img');
         cardFront.classList.add('front-face');
         cardFront.setAttribute("src", `/static/bw_images/${card}H.png`);
         cardDiv.appendChild(cardFront);
+
+        const cardBack = document.createElement('img');
+        cardBack.setAttribute("src", "/static/bw_images/gray_back.png");
+        cardBack.classList.add('back-face');
+        cardDiv.appendChild(cardBack);
     }
-    console.log(cardDeck)
 }
 
-function displayCards() {
-    let cardPlaces = document.querySelectorAll(".cardPlace");
-    let cardDeck = document.querySelector('#cardDeck').children;
-    let index = 0;
-    let cardDeck2 = Array.from(cardDeck);
+function timer(ms) {
+    return new Promise(res => setTimeout(res, ms));
+}
 
-    for (let card of cardDeck2) {
+async function displayCards() {
+    let cardPlaces = document.querySelectorAll(".cardPlace");
+    let cardDeck = Array.from(document.querySelector('#cardDeck').children);
+    let index = 0, count = 0;
+
+    for (let card of cardDeck) {
+        await timer(50);
+        
+        console.log(count);
         card.className = 'card';
         cardPlaces[index].appendChild(card);
 
@@ -70,7 +75,34 @@ function displayCards() {
     }
 }
 
+
+
+async function addNextHand(event) {
+    let cardPlaces = document.querySelectorAll(".cardPlace");
+    let cardDeck = Array.from(event.currentTarget.children);
+    let index = 0;
+
+    while (index < 10) {
+
+        await timer(50);
+        let card = setBackCardHidden(cardDeck[index]);
+        card.className = 'card';
+        cardPlaces[index].appendChild(card);
+        index++
+    }
+}
+
+
+function setBackCardHidden(card) {
+    let back = card.querySelector('.back-face');
+    back.className = 'back-face-hidden';
+    return card;
+}
+
+
+let cardDeck = document.querySelector('#cardDeck');
+cardDeck.addEventListener('click', addNextHand);
+window.addEventListener('load', displayCards);
+
 putCardsIntoDeck();
 
-
-displayCards();

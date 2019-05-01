@@ -34,6 +34,12 @@ img {
     position: absolute;
 }
 
+.back-face-hidden {
+    display: none;
+}
+
+
+
 #cardDeck, #completedDeck {
     border: 1px solid white;
     position: absolute;
