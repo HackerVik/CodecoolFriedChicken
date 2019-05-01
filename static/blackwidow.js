@@ -49,24 +49,19 @@ function putCardsIntoDeck() {
         cardFront.setAttribute("src", `/static/bw_images/${card}H.png`);
         cardDiv.appendChild(cardFront);
     }
-    console.log(cardDeck)
 }
 
 function displayCards() {
-    let cardPlaces = document.querySelectorAll(".cardPlace");
-    let cardDeck = document.querySelector('#cardDeck').children;
-    let index = 0;
-    let cardDeck2 = Array.from(cardDeck);
+    const cardPlaces = document.querySelectorAll(".cardPlace");
+    const cardDeck = Array.from(document.querySelector('#cardDeck').children);
+    let index = 0, i = 0;
 
-    for (let card of cardDeck2) {
+    while (i < 54) {
+        let card = cardDeck[i];
         card.className = 'card';
         cardPlaces[index].appendChild(card);
-
-        if (index === 9) {
-            index = 0;
-        } else {
-            index++;
-        }
+        index = index === 9 ? 0 : index + 1;
+        i++;
     }
 }
 
