@@ -3,69 +3,107 @@
     background-size: cover;
 }
 
-.containercenter {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-}
-
-.cfc {
-    display: inline;
-    width: 40%;
-}
-
-.memory {
-    display: inline;
-}
-
-.blackwidow {
-    display: inline;
-}
-
-.memorycontainer {
-    position: fixed;
-    top: 25%;
-    left: 52.5%;
-    transform: translate(-50%, -50%);
-    width: 1600px;
-    height: 450px;
-    display: flex;
-    flex-wrap: wrap;
-    margin: auto;
-}
-
-.button_container {
-    position: fixed;
-    top: 50%;
-    left: 10%;
-    transform: translate(-50%, -50%);
-}
-
-.button {
-    display: block;
-    margin: 5px;
-    align-content: center;
-    text-align: center;
-    color: white;
-    font-weight: bold;
-    font-size: 40px;
-}
-
-.card {
-    display: inline;
-    margin: 5px;
-}
-
 .memory_game {
     background-image: url("/static/images/memory_background.png");
     background-size: cover;
 
 }
 
+.containercenter {
+    width: 80%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    flex-wrap: nowrap ;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.cfc {
+    display: inline;
+    width: 20%;
+}
+
+.memory {
+    display: inline;
+    width: 20%;
+
+}
+
+.blackwidow {
+    display: inline;
+    width: 20%;
+}
+
+.indeximage {
+    width:35%;
+}
+
+.memorycontainer {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    height: auto;
+    display: flex;
+    flex-wrap: nowrap ;
+    margin: auto;
+}
+
+.button_container {
+    vertical-align: middle;
+    text-align: center;
+    width: 60%;
+    height:auto;
+    position: fixed;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    flex-wrap: nowrap;
+}
+
+.menu_container {
+    vertical-align: middle;
+    text-align: center;
+    width: 60%;
+    height:auto;
+    position: fixed;
+    overflow: hidden;
+    z-index:-1;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    flex-wrap: nowrap;
+}
+
+.button {
+    display: inline;
+    margin: 0.2%;
+    align-content: center;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    font-size: 300%;
+}
+
+.button_image {
+    width:30%;
+    height: auto;
+}
+
+.card_image {
+    width:100%;
+    height:auto;
+}
+
+.card {
+    display: inline;
+    margin: 0.5%;
+}
+
 img {
-    border-radius: 25px;
+    border-radius: 3%;
 }
 
 
@@ -89,7 +127,7 @@ body {
     margin-top: -70px;
     padding: 10px;
     border-radius: 20px;
-    transform: translateX(-50%);
+    transform: translate(-50%, -100%);
 }
 
 .demo__colored-blocks {
