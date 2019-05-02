@@ -104,10 +104,13 @@ function setBackCardHidden(card) {
 function overturn() {
     let cardPlaces = document.querySelectorAll('.cardPlace');
     for (let place of cardPlaces) {
-        let lastCard = place.lastChild;
-        let backCard = lastCard.lastChild;
-        if (backCard.className === 'back-face') {
-            setBackCardHidden(lastCard);
+        if(place.innerHTML !== '') {
+            let lastCard = place.lastChild;
+            let backCard = lastCard.lastChild;
+
+            if (backCard.className === 'back-face') {
+                setBackCardHidden(lastCard);
+            }
         }
     }
 }
@@ -233,7 +236,7 @@ function checkCardSequence() {
             counter = 0;
         }
     }
-    // overturn();
+    overturn();
 }
 
 function replaceCompletedCards(place) {
