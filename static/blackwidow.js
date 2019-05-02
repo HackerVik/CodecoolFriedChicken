@@ -212,7 +212,6 @@ function checkCard() {
             if (cards[i].lastChild.className === 'back-face-hidden') {
                 if (parseInt(cards[i].dataset.value) === parseInt(cards[i + 1].dataset.value) + 1) {
                     counter++;
-                    console.log(counter)
                 } else {
                     counter = 0;
                 }
@@ -221,7 +220,8 @@ function checkCard() {
         if (counter === 3) {
             let completedDeck = document.querySelector('#completedDeck');
             for (let i = 0; i < 4 ; i++) {
-                completedDeck.appendChild(place.lastChild)
+                let lastChild = place.lastChild;
+                completedDeck.appendChild(lastChild)
             }
             break;
         } else {
