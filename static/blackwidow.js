@@ -223,10 +223,12 @@ function checkCard() {
             for (let i = 0; i < 4 ; i++) {
                 completedDeck.appendChild(place.lastChild)
             }
+            break;
         } else {
             counter = 0;
         }
     }
+    overturn();
 }
 
 
