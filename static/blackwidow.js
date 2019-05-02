@@ -184,8 +184,13 @@ function addMovingEvent() {
 function changeCardsPlace(event) {
     let selected = document.querySelectorAll('.selected');
     let place = event.currentTarget;
-    for (let card of selected) {
-        place.appendChild(card);
+    let lastCardValue = parseInt(place.lastChild.dataset.value);
+    let firstCardValue = parseInt(selected[0].dataset.value);
+
+    if (lastCardValue === firstCardValue + 1) {
+        for (let card of selected) {
+            place.appendChild(card);
+        }
     }
 }
 
@@ -236,33 +241,12 @@ function replaceCompletedCards(place) {
     }
 }
 
-sessionStorage.setItem('selected', 'no');
-let cardDeck = document.querySelector('#cardDeck');
-cardDeck.addEventListener('click', addNextHand);
-putCardsIntoDeck();
-// checkCompleteDeck();
 
-window.addEventListener('load', displayCards);
+function main() {
+    putCardsIntoDeck();
+    sessionStorage.setItem('selected', 'no');
+    document.querySelector('#cardDeck').addEventListener('click', addNextHand);
+    window.addEventListener('load', displayCards);
+}
 
-
-// function rotateMatrix(matrix) {
-//     const flipMatrix = matrix => (
-//         matrix[0].map((column, index) => (
-//             matrix.map(row => row[index])
-//         ))
-//     );
-//     return flipMatrix(matrix)
-// }
-
-// function getBoardArray() {
-//     let board = [], col = [];
-//     let cardPlaces = document.querySelectorAll('.cardPlace');
-//     for (let place of cardPlaces) {
-//         for (let card of place.children) {
-//             col.push(card);
-//         }
-//         board.push(col);
-//         col = [];
-//     }
-//     return rotateMatrix(board);
-// }
+main()
