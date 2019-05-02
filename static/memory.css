@@ -1,6 +1,7 @@
 .about {
     background-image: url("/static/images/about.png");
     background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .index {
