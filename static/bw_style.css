@@ -53,6 +53,7 @@ img {
     top: 0;
     bottom: unset;
     margin-top: 20px;
+    position: absolute;
 
 }
 

@@ -218,8 +218,11 @@ function checkCard() {
                 }
             }
         }
-        if (counter === 12) {
-            console.log('true')
+        if (counter === 3) {
+            let completedDeck = document.querySelector('#completedDeck');
+            for (let i = 0; i < 4 ; i++) {
+                completedDeck.appendChild(place.lastChild)
+            }
         } else {
             counter = 0;
         }
