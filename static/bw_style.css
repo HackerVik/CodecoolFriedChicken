@@ -1,7 +1,6 @@
 #gameBoard {
     width: 1500px;
     height: 850px;
-    border: 1px solid black;
     padding: 20px;
     position: relative;
 }
@@ -17,7 +16,7 @@ body {
     width: 100px;
     height: 150px;
     border-radius: 7px;
-    margin-right: 5px;
+    margin-right: 10px;
 }
 
 img {
@@ -26,7 +25,7 @@ img {
 }
 
 
-.card {
+.card, .selected {
     padding-bottom: 30px;
 }
 
@@ -39,8 +38,7 @@ img {
 }
 
 
-
-#cardDeck, #completedDeck {
+#cardDeck, #completedDeck , .card-in-deck{
     border: 1px solid white;
     position: absolute;
     bottom: 0;
@@ -59,5 +57,11 @@ img {
 }
 
 .card-in-deck {
-    position: absolute;
+    border: unset;
+    border-radius: unset;
+    margin: unset;
+}
+
+.selected img{
+    transform: scale(1.2);
 }
