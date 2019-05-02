@@ -187,8 +187,6 @@ function changeCardsPlace(event) {
     for (let card of selected) {
         place.appendChild(card);
     }
-    setTimeout(checkCard(place),1000)
-
 }
 
 function changeCardSelectBack() {
@@ -199,24 +197,32 @@ function changeCardSelectBack() {
             card.classList.remove('selected');
             sessionStorage.setItem('selected', 'no');
             overturn()
+            checkCard()
         }, 2000)
     }
 }
 
-function checkCard(place) {
+function checkCard() {
     let counter = 0;
-    for (let i = 0; i < place.length - 1; i++) {
-        console.log(place[i]);
-        if (place[i].lastChild.className === 'back-face-hidden') {
-            if (parseInt(place[i].dataset.value) !== parseInt(place[i + 1].dataset.value) + 1) {
-                counter++;
-            } else {
-                counter = 0;
+    let places = document.querySelectorAll('.cardPlace');
+
+    for (let place of places) {
+        let cards = place.children;
+        for (let i = 0; i < cards.length - 1; i++) {
+            if (cards[i].lastChild.className === 'back-face-hidden') {
+                if (parseInt(cards[i].dataset.value) === parseInt(cards[i + 1].dataset.value) + 1) {
+                    counter++;
+                    console.log(counter)
+                } else {
+                    counter = 0;
+                }
             }
         }
-    }
-    if (counter === 12) {
-        console.log('true')
+        if (counter === 12) {
+            console.log('true')
+        } else {
+            counter = 0;
+        }
     }
 }
 
@@ -230,11 +236,11 @@ function checkCompleteDeck() {
 
 }
 
-// checkCompleteDeck();
 sessionStorage.setItem('selected', 'no');
 let cardDeck = document.querySelector('#cardDeck');
 cardDeck.addEventListener('click', addNextHand);
 putCardsIntoDeck();
+// checkCompleteDeck();
 
 window.addEventListener('load', displayCards);
 
