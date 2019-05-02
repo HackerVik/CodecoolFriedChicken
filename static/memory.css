@@ -1,3 +1,8 @@
+.about {
+    background-image: url("/static/images/about.png");
+    background-size: cover;
+}
+
 .index {
     background-image: url("/static/images/index_background.png");
     background-size: cover;
