@@ -2,14 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>CFC</title>
+    <title>CFC | Home</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='memory.css') }}">
 </head>
 <body class="index">
 <div class="containercenter">
-    <div class="cfc"><a href="/about"><img src="/static/images/cfclogo.png" class="indeximage"></a></div><br>
-    <div class="blackwidow"><a href="/widow"><img src="/static/images/blackwidow.png" class="indeximage"></a></div>
-    <div class="memory"><a href="/memory"><img src="/static/images/memory.png" class="indeximage"></a></div>
+    <div class="cfc"><a href="/about"><img src="{{ url_for('static', filename='images/cfclogo.png') }}" class="indeximage"></a>
+    </div>
+    <br>
+    <div class="blackwidow"><a href="/widow"><img src="{{ url_for('static', filename='images/blackwidow.png') }}"
+                                                  class="indeximage"></a></div>
+    <div class="memory"><a href="/memory"><img src="{{ url_for('static', filename='images/memory.png') }}" class="indeximage"></a>
+    </div>
 
 </div>
 </body>
