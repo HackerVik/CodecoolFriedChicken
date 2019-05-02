@@ -183,9 +183,9 @@ function addMovingEvent() {
 
 function changeCardsPlace(event) {
     let selected = document.querySelectorAll('.selected');
+    let place = event.currentTarget;
     for (let card of selected) {
-        let place = event.currentTarget;
-        place.appendChild(card)
+        place.appendChild(card);
     }
 }
 
@@ -196,19 +196,53 @@ function changeCardSelectBack() {
         setTimeout(function () {
             card.classList.remove('selected');
             sessionStorage.setItem('selected', 'no');
-            overturn()
+            overturn();
+            checkCardSequence();
         }, 2000)
     }
 }
 
+function checkCardSequence() {
+    let counter = 0;
+    let places = document.querySelectorAll('.cardPlace');
+
+    for (let place of places) {
+        let cards = place.children;
+        for (let i = 0; i < cards.length - 1; i++) {
+            let lastCard = cards[i].lastChild;
+            if (lastCard.className === 'back-face-hidden') {
+                if (parseInt(cards[i].dataset.value) === parseInt(cards[i + 1].dataset.value) + 1) {
+                    counter++;
+                } else {
+                    counter = 0;
+                }
+            }
+        }
+        if (counter === 12) {
+            replaceCompletedCards(place);
+            break;
+        } else {
+            counter = 0;
+        }
+    }
+    overturn();
+}
+
+function replaceCompletedCards(place) {
+    let completedDeck = document.querySelector('#completedDeck');
+    for (let i = 0; i < 13; i++) {
+        let lastChild = place.lastChild;
+        completedDeck.appendChild(lastChild)
+    }
+}
 
 sessionStorage.setItem('selected', 'no');
 let cardDeck = document.querySelector('#cardDeck');
 cardDeck.addEventListener('click', addNextHand);
 putCardsIntoDeck();
+// checkCompleteDeck();
 
 window.addEventListener('load', displayCards);
-
 
 
 // function rotateMatrix(matrix) {

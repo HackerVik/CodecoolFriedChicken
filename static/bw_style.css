@@ -53,7 +53,11 @@ img {
     top: 0;
     bottom: unset;
     margin-top: 20px;
+    position: absolute;
+}
 
+#completedDeck .card{
+    padding-bottom: 0px;
 }
 
 .card-in-deck {
