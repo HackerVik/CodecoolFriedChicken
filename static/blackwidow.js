@@ -104,10 +104,13 @@ function setBackCardHidden(card) {
 function overturn() {
     let cardPlaces = document.querySelectorAll('.cardPlace');
     for (let place of cardPlaces) {
-        let lastCard = place.lastChild;
-        let backCard = lastCard.lastChild;
-        if (backCard.className === 'back-face') {
-            setBackCardHidden(lastCard);
+        if(place.innerHTML !== '') {
+            let lastCard = place.lastChild;
+            let backCard = lastCard.lastChild;
+
+            if (backCard.className === 'back-face') {
+                setBackCardHidden(lastCard);
+            }
         }
     }
 }
@@ -184,9 +187,12 @@ function addMovingEvent() {
 function changeCardsPlace(event) {
     let selected = document.querySelectorAll('.selected');
     let place = event.currentTarget;
-    let lastCardValue = parseInt(place.lastChild.dataset.value);
-    let firstCardValue = parseInt(selected[0].dataset.value);
+    let lastCardValue = 1, firstCardValue = 0;
 
+    if (place.innerHTML !== '') {
+        lastCardValue = parseInt(place.lastChild.dataset.value);
+        firstCardValue = parseInt(selected[0].dataset.value);
+    }
     if (lastCardValue === firstCardValue + 1) {
         for (let card of selected) {
             place.appendChild(card);
