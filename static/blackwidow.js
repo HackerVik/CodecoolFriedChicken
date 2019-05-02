@@ -64,13 +64,15 @@ async function displayCards() {
         slideCard(index, row, i);
         await timer(100);
         let card = cardDeck[i];
-        if (i >= 44){
+
+        if (i >= 44) {
             card = setBackCardHidden(card)
         }
         card.className = 'card';
         cardPlaces[index].appendChild(card);
         index = index === 9 ? 0 : index + 1;
         row = index === 9 ? row + 1 : row;
+        card.addEventListener('click', moveCards);
         i++;
     }
 }
@@ -87,6 +89,7 @@ async function addNextHand(event) {
         let card = setBackCardHidden(cardDeck[index]);
         card.className = 'card';
         cardPlaces[index].appendChild(card);
+        card.addEventListener('click', moveCards);
         index++
     }
 }
@@ -98,36 +101,134 @@ function setBackCardHidden(card) {
 }
 
 
-function overturn(){
+function overturn() {
     let cardPlaces = document.querySelectorAll('.cardPlace');
     for (let place of cardPlaces) {
         let lastCard = place.lastChild;
-        setBackCardHidden(lastCard);
+        let backCard = lastCard.lastChild;
+        if (backCard.className === 'back-face') {
+            setBackCardHidden(lastCard);
+        }
     }
 }
 
 
 function slideCard(col, row, _id) {
-  let elem = document.getElementById(`${_id}`);
-  let bottom = 0, right = 0;
-  let id = setInterval(frame, 1);
-  function frame() {
-    if (bottom === 700 || right === 1300) {
-      clearInterval(id);
-    } else {
-      bottom = bottom + 24 - 2 * row;
-      right = right + 48 - 3.84 * col;
-      elem.style.bottom = bottom + "px";
-      elem.style.right =  right + "px";
+    let elem = document.getElementById(`${_id}`);
+    let bottom = 0, right = 0;
+    let id = setInterval(frame, 1);
+
+    function frame() {
+        if (bottom >= 700) {
+            clearInterval(id);
+        } else {
+            bottom = bottom + 24 - 2 * row;
+            right = right + 48 - 3.84 * col;
+            elem.style.bottom = bottom + "px";
+            elem.style.right = right + "px";
+        }
     }
-  }
+}
+
+function getNextSiblings(elem) {
+    let siblings = [];
+
+    while (elem) {
+        siblings.push(elem);
+        elem = elem.nextSibling;
+    }
+    return siblings;
 }
 
 
+function checkDraggable(cards) {
+    let selected = sessionStorage.getItem('selected');
+
+    if (selected === 'no') {
+        for (let i = 0; i < cards.length - 1; i++) {
+            if (parseInt(cards[i].dataset.value) !== parseInt(cards[i + 1].dataset.value) + 1) {
+                return false;
+            }
+        }
+        sessionStorage.setItem('selected', 'yes');
+        return true;
+    }
+    return false;
+}
+
+function moveCards(event) {
+    let cards = getNextSiblings(event.currentTarget);
+    let draggable = checkDraggable(cards);
+
+    if (draggable) {
+        for (let card of cards) {
+            card.classList.add('selected');
+        }
+        addMovingEvent();
+        changeCardSelectBack();
+    }
+}
+
+function addMovingEvent() {
+    let cardPlaces = document.querySelectorAll('.cardPlace');
+    for (let place of cardPlaces) {
+        place.addEventListener('click', changeCardsPlace);
+    }
+    setTimeout(function () {
+        for (let place of cardPlaces) {
+            place.removeEventListener('click', changeCardsPlace);
+        }
+    }, 2000);
+}
+
+function changeCardsPlace(event) {
+    let selected = document.querySelectorAll('.selected');
+    for (let card of selected) {
+        let place = event.currentTarget;
+        place.appendChild(card)
+    }
+}
+
+function changeCardSelectBack() {
+    let selected = document.querySelectorAll('.selected');
+
+    for (let card of selected) {
+        setTimeout(function () {
+            card.classList.remove('selected');
+            sessionStorage.setItem('selected', 'no');
+            overturn()
+        }, 2000)
+    }
+}
 
 
+sessionStorage.setItem('selected', 'no');
 let cardDeck = document.querySelector('#cardDeck');
 cardDeck.addEventListener('click', addNextHand);
+putCardsIntoDeck();
+
 window.addEventListener('load', displayCards);
 
-putCardsIntoDeck();
+
+
+// function rotateMatrix(matrix) {
+//     const flipMatrix = matrix => (
+//         matrix[0].map((column, index) => (
+//             matrix.map(row => row[index])
+//         ))
+//     );
+//     return flipMatrix(matrix)
+// }
+
+// function getBoardArray() {
+//     let board = [], col = [];
+//     let cardPlaces = document.querySelectorAll('.cardPlace');
+//     for (let place of cardPlaces) {
+//         for (let card of place.children) {
+//             col.push(card);
+//         }
+//         board.push(col);
+//         col = [];
+//     }
+//     return rotateMatrix(board);
+// }
