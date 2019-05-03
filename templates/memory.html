@@ -12,7 +12,8 @@
 
 <div class="memorycontainer" id="memorycontainer">
     {% for i in range(diff) %}
-        <div class="card" id={{ i+1 }}><img class="card_image " src="/static/images/cardbackground.png"></div>
+        <div class="card" id={{ i+1 }}><img class="card_image "
+                                            src="{{ url_for('static', filename='images/cardbackground.png') }}"></div>
     {% endfor %}
     <input type="hidden" id="diff" data-diff="{{ diff }}">
 </div>
@@ -49,15 +50,28 @@
 
 
 <div class="menu_container">
-    <div class="button" id="moves"><img src=/static/images/moves.png> 0</div>
-    <div class="button"><a href="/"><button><img src="/static/images/home.png" class="button_image"></button></a></div>
-    <div id="manual" class="button"><button><img src="/static/images/manual.png" class="button_image"></button></div>
+    <div class="button" id="moves"><img src="{{ url_for('static', filename='images/moves.png') }}"> 0</div>
+    <div class="button"><a href="/">
+        <button><img src="{{ url_for('static', filename='images/home.png') }}" class="button_image"></button>
+    </a></div>
+    <div id="manual" class="button">
+        <button><img src="/static/images/manual.png" class="button_image"></button>
+    </div>
 </div>
 
 <div class="button_container">
-    <div class="button"><a href="/memory?diff=4"><button class="diff"><img src=/static/images/beginner.png class="button_image"></button></a></div>
-    <div class="button"><a href="/memory?diff=6"><button class="diff"><img src=/static/images/amateur.png class="button_image"></button></a></div>
-    <div class="button"><a href="/memory?diff=8"><button class="diff"><img src=/static/images/expert.png class="button_image"></button></a></div>
+    <div class="button"><a href="/memory?diff=4">
+        <button class="diff"><img src="{{ url_for('static', filename='images/beginner.png') }}" class="button_image">
+        </button>
+    </a></div>
+    <div class="button"><a href="/memory?diff=6">
+        <button class="diff"><img src="{{ url_for('static', filename='images/amateur.png') }}" class="button_image">
+        </button>
+    </a></div>
+    <div class="button"><a href="/memory?diff=8">
+        <button class="diff"><img src="{{ url_for('static', filename='images/expert.png') }}" class="button_image">
+        </button>
+    </a></div>
 </div>
 </body>
 </html>

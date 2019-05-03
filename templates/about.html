@@ -2,10 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Who we are</title>
+    <title>CFC | Who we are</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='memory.css') }}">
 </head>
 <body class="about">
-    <div class="button"><a href="/"><button><img src="/static/images/home.png" class="button_image"></button></a></div>
+<div class="button"><a href="/">
+    <button><img src="{{ url_for('static', filename='images/home.png') }}" class="button_image"></button>
+</a></div>
 </body>
 </html>
