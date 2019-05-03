@@ -1,4 +1,4 @@
-//for difficulty setting later
+//for main setting later
 function getDeck(num) {
     let deck = [];
     for (let j = 0; j < num; j++) {

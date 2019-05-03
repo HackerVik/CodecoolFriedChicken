@@ -1,39 +1,34 @@
-buttons = document.querySelectorAll(".diff");
-document.getElementById("manual").addEventListener("click", manual)
+document.getElementById("manual").addEventListener("click", manual);
+let buttons = document.querySelectorAll(".diff");
 for (let i = 0; i < buttons.length; i++) {
-    buttons[i].addEventListener("click", difficulty);
+    buttons[i].addEventListener("click", main);
 }
 
 window.onload = function () {
-    difficulty();
+    main();
 };
 
 dragula([document.getElementById("memorycontainer")])
-    .on('drag', function (el) {
-    }).on('drop', function (el) {
+    .on('drop', function () {
+        let game_run = sessionStorage.getItem("game_run");
+        if (game_run === "true") {
+            let arr = getActualArray();
+            let arrSolution = JSON.parse(sessionStorage.getItem("originalArray"));
 
-    let game_run = sessionStorage.getItem("game_run");
-    if (game_run === "true") {
-        let arr = getActualArray();
-        let arrSolution = JSON.parse(sessionStorage.getItem("originalArray"));
+            moveCounter();
+            if (checkArray(arr, arrSolution)) {
 
-        moveCounter();
-        if (checkArray(arr, arrSolution)) {
-
-            let moves = sessionStorage.getItem("moves");
-            setTimeout(function () {
-                alert("You won! Your moves: " + moves)
-            });
-            sessionStorage.setItem("moves", 0);
-            cardToBack();
-            sessionStorage.setItem("game_run", "false");
-            moveCounter(true);
-
+                let moves = sessionStorage.getItem("moves");
+                setTimeout(function () {
+                    alert("You won! Your moves: " + moves)
+                });
+                sessionStorage.setItem("moves", "0");
+                cardToBack();
+                sessionStorage.setItem("game_run", "false");
+                moveCounter(true);
+            }
         }
-
-    }
-
-});
+     });
 
 function cardToBack() {
     let cards = document.querySelectorAll(".card");
@@ -42,7 +37,7 @@ function cardToBack() {
     }
 }
 
-function main() {
+function gameStart() {
     document.getElementById("timer").style.display = "none";
     let arr2 = shuffle();
     changeImageSource(arr2);
@@ -63,7 +58,6 @@ function getImages(numberOfCards, numberOfImages) {
 function changeImageSource(arr) {
     let images = document.querySelectorAll(".card");
     for (let i = 0; i < arr.length; i++) {
-
         images[i].innerHTML = '<div class="images" data-image="' + arr[i] + '"><img  class="card_image" src="/static/images/' + arr[i] + '.png"></div>';
     }
 }
@@ -90,47 +84,44 @@ function getActualArray() {
 
 function shuffle() {
     let array = JSON.parse(sessionStorage.getItem("originalArray"));
+    let originalArray = JSON.parse(sessionStorage.getItem("originalArray"));
     let currentIndex = array.length, temporaryValue, randomIndex;
-    while (0 !== currentIndex) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-
-
+    while (!checkArray(array, originalArray)) {
+        while (0 !== currentIndex) {
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+            temporaryValue = array[currentIndex];
+            array[currentIndex] = array[randomIndex];
+            array[randomIndex] = temporaryValue;
+        }
     }
     return array;
 }
 
 
-function difficulty(e) {
+function main(e) {
     sessionStorage.setItem("moves", 0);
     sessionStorage.setItem("game_run", "false");
     document.getElementById("timer").style.display = "block";
-    let numnerOfCards = document.getElementById("diff").dataset.diff;
-    let originalArray = getImages(numnerOfCards, 55)
+    let numberOfCards = document.getElementById("diff").dataset.diff;
+    let originalArray = getImages(numberOfCards, 55)
     changeImageSource(originalArray);
     sessionStorage.setItem("originalArray", JSON.stringify(originalArray));
 
     let time = 4.5;
 
-
     setTimeout(function () {
         sessionStorage.setItem("game_run", "true");
-
-        main()
+        gameStart()
     }, time * 1000);
 
 
 }
 
 function moveCounter(reset = false) {
-    let moves = 0
+    let moves = "0";
 
     if (reset === false) {
-
         moves = parseInt(sessionStorage.getItem("moves")) + 1;
         sessionStorage.setItem("moves", moves);
     }
