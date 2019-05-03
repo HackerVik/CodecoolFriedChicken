@@ -32,8 +32,6 @@ dragula([document.getElementById("memorycontainer")])
         }
 
     }
-    // Used like so
-
 
 });
 
